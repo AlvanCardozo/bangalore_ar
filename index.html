@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR Model</title>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+        }
+        model-viewer {
+            width: 100%;
+            height: 500px;
+            background: #ddd;
+        }
+        .controls {
+            margin: 10px;
+        }
+        #ar-button {
+            background: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        #ar-button img {
+            width: 40px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <model-viewer id="myModel"
+        src="media/gltf/models/final.glb"
+        alt="A 3D model"
+        ar
+        shadow-intensity="1"
+        camera-controls touch-action="pan-y">
+        
+    </model-viewer>
+    <div class="controls">
+        <label for="modelSelect">Choose a Model:</label>
+        <select id="modelSelect">
+            <option value="media/gltf/models/final.glb">Whole Area</option>
+            <option value="media/gltf/models/single_villa.glb">Villa</option>
+            <option value="media/gltf/models/open_villa.glb">Interior</option>
+        </select>
+    </div>
+
+    <script>
+        const modelViewer = document.querySelector("#myModel");
+        const modelSelect = document.getElementById("modelSelect");
+        modelSelect.addEventListener("change", (event) => {
+            modelViewer.src = event.target.value;
+        });
+
+    </script>
+
+</body>
+</html>
